@@ -9,6 +9,12 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-controller="Courses" asp-action="Index">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -31,7 +37,7 @@
                 @Html.DisplayFor(modelItem => item.CourseName)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.CoursesDescription)
+                @Html.DisplayFor(modelItem => item.CoursesDescription)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FacillitatorId)

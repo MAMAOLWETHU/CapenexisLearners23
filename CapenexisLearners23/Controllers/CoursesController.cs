@@ -20,21 +20,21 @@ namespace CapenexisLearners23.Controllers
         }
 
         // GET: Courses
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString  )
         {
-            var courses = from m in _context.Courses
-                          select m;
+            var courses = from c in _context.Courses 
+                         select c;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                courses = courses.Where(s => s.CourseName!.Contains(searchString) || s.CoursesDescription!.Contains(searchString));
+                courses = courses.Where(s => s.CourseName!.Contains(searchString));
             }
 
             return View(await courses.ToListAsync());
         }
 
-    // GET: Courses/Details/5
-    public async Task<IActionResult> Details(int? id)
+        // GET: Courses/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Courses == null)
             {
@@ -62,7 +62,7 @@ namespace CapenexisLearners23.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CoursesId,CourseName,Description,FacillitatorId")] Courses courses)
+        public async Task<IActionResult> Create([Bind("CoursesId,CourseName,CoursesDescription,FacillitatorId")] Courses courses)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace CapenexisLearners23.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CoursesId,CourseName,Description,FacillitatorId")] Courses courses)
+        public async Task<IActionResult> Edit(int id, [Bind("CoursesId,CourseName,CoursesDescription,FacillitatorId")] Courses courses)
         {
             if (id != courses.CoursesId)
             {
