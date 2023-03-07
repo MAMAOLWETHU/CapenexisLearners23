@@ -20,17 +20,17 @@ namespace CapenexisLearners23.Controllers
         }
 
         // GET: Courses
-        public async Task<IActionResult> Index(string searchString  )
+        public async Task<IActionResult> Index(string searchString)
         {
-            var courses = from c in _context.Courses 
-                         select c;
+            var Courses = from c in _context.Courses
+                          select c;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                courses = courses.Where(s => s.CourseName!.Contains(searchString));
+                Courses = Courses.Where(s => s.CourseName!.Contains(searchString) || s. CoursesDescription!.Contains(searchString));
             }
 
-            return View(await courses.ToListAsync());
+            return View(await Courses.ToListAsync());
         }
 
         // GET: Courses/Details/5
